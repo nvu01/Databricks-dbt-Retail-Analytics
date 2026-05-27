@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: mart_sales_summary
+    description: >
+      Monthly revenue and operational metrics for delivered orders.
+      One row per calendar month. Primary source for revenue trend charts.
+    columns:
+      - name: order_year
+        tests: [not_null]
+      - name: order_month
+        tests: [not_null]
+      - name: total_orders
+        tests: [not_null]
+      - name: total_revenue_usd
+        tests: [not_null]
+
+  - name: mart_category_performance
+    description: >
+      Revenue, volume, and freight metrics per product category.
+      Includes revenue rank. One row per category.
+    columns:
+      - name: category_name
+        tests:
+          - unique
+          - not_null
+      - name: revenue_rank
+        tests: [not_null]
+      - name: total_revenue_usd
+        tests: [not_null]
+
+  - name: mart_customer_segments
+    description: >
+      Customer-level aggregation with RFM-inspired segments:
+      Champion, Loyal, At Risk, New, One-Time.
+      One row per unique customer.
+    columns:
+      - name: customer_unique_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_segment
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Champion', 'Loyal', 'At Risk', 'New', 'One-Time']
+      - name: total_spent_usd
+        tests: [not_null]

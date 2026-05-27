@@ -1,0 +1,27 @@
+name: retail_analytics
+version: "1.0.0"
+config-version: 2
+
+profile: retail_analytics
+
+model-paths: ["models"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  retail_analytics:
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    marts:
+      +materialized: table
+      +schema: marts
+
+vars:
+  # Filter out cancelled/unavailable orders from analysis
+  valid_order_statuses: ['delivered', 'shipped', 'approved', 'processing', 'invoiced']

@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: int_orders_enriched
+    description: >
+      Orders joined to customers and aggregated item/payment totals.
+      Core model used by all mart tables. One row per order.
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_unique_id
+        tests:
+          - not_null
+      - name: order_gross_usd
+        tests:
+          - not_null
+
+  - name: int_order_payments
+    description: >
+      Payment records enriched with order date metadata.
+      Used for payment method analysis in mart layer.
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+      - name: payment_amount_usd
+        tests:
+          - not_null

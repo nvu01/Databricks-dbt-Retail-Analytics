@@ -1,0 +1,31 @@
+retail_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: databricks
+      host: "{{ env_var('DATABRICKS_HOST') }}"
+      http_path: "{{ env_var('DATABRICKS_HTTP_PATH') }}"
+      token: "{{ env_var('DATABRICKS_TOKEN') }}"
+      catalog: hive_metastore   # use 'main' if on Unity Catalog
+      schema: staging           # default schema; overridden per model layer
+      threads: 4
+
+# ─────────────────────────────────────────────────────
+# HOW TO SET ENVIRONMENT VARIABLES:
+#
+# Mac/Linux (add to ~/.zshrc or ~/.bashrc):
+#   export DATABRICKS_HOST="your-workspace.azuredatabricks.net"
+#   export DATABRICKS_HTTP_PATH="/sql/1.0/warehouses/abc123"
+#   export DATABRICKS_TOKEN="dapiXXXXXXXXXXXXXXXX"
+#
+# Windows (PowerShell):
+#   $env:DATABRICKS_HOST="your-workspace.azuredatabricks.net"
+#   $env:DATABRICKS_HTTP_PATH="/sql/1.0/warehouses/abc123"
+#   $env:DATABRICKS_TOKEN="dapiXXXXXXXXXXXXXXXX"
+#
+# Find HTTP Path:
+#   Databricks > SQL Warehouses > your warehouse > Connection Details
+#
+# Find Token:
+#   Databricks > Settings > Developer > Access Tokens > Generate New Token
+# ─────────────────────────────────────────────────────
