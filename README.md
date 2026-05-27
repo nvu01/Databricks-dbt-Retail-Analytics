@@ -1,10 +1,8 @@
-# 🛒 Retail Sales Analytics Pipeline
+# Retail Sales Analytics Pipeline
 
 An end-to-end data engineering and analytics project built on **Databricks**, **Delta Lake**, and **dbt** using the [Olist Brazilian E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
 
----
-
-## 📐 Architecture
+## Architecture
 
 ```
 Raw CSV Files (Kaggle)
@@ -28,9 +26,7 @@ Raw CSV Files (Kaggle)
 └───────────────────┘
 ```
 
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 retail_analytics/
@@ -67,16 +63,14 @@ retail_analytics/
     └── databricks_sql_queries.sql    # All dashboard queries
 ```
 
----
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Databricks Community Edition account (free): https://community.cloud.databricks.com
 - Kaggle account to download dataset (free)
 - Python 3.8+
 
-### Step 1 — Download the Dataset
+### Step 1: Download the Dataset
 1. Go to https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 2. Download and unzip the dataset
 3. You'll need these files:
@@ -87,22 +81,20 @@ retail_analytics/
    - `olist_order_items_dataset.csv`
    - `olist_sellers_dataset.csv`
 
-### Step 2 — Upload to Databricks
+### Step 2: Upload to Databricks
 1. In Databricks, go to **Data > Add Data > Upload File**
 2. Upload all 6 CSV files to DBFS
 
-### Step 3 — Run Notebooks in Order
+### Step 3: Run Notebooks in Order
 Open each notebook in `notebooks/` and run them in sequence:
-1. `01_setup_environment.py` — installs dbt and configures the connection
-2. `02_load_raw_data.py` — creates raw Delta tables from CSVs
-3. `03_run_dbt_and_validate.py` — runs all dbt models and tests
+1. `01_setup_environment.py`: installs dbt and configures the connection
+2. `02_load_raw_data.py`: creates raw Delta tables from CSVs
+3. `03_run_dbt_and_validate.py`: runs all dbt models and tests
 
-### Step 4 — Build the Dashboard
+### Step 4: Build the Dashboard
 Copy queries from `dashboard/databricks_sql_queries.sql` into Databricks SQL and create visualizations.
 
----
-
-## 📊 Business Questions Answered
+## Business Questions Answered
 
 | Question | Mart Table |
 |---|---|
@@ -112,20 +104,16 @@ Copy queries from `dashboard/databricks_sql_queries.sql` into Databricks SQL and
 | What is average delivery time by state? | `mart_sales_summary` |
 | What payment methods are most common? | `mart_sales_summary` |
 
----
-
-## 🧪 Data Quality Tests
+## Data Quality Tests
 
 dbt tests are defined in each `schema.yml` file:
-- **Uniqueness** — primary keys are unique
-- **Not null** — critical fields are never null
-- **Accepted values** — order statuses are valid
-- **Relationships** — foreign keys exist in parent tables
-- **Custom test** — revenue is always positive
+- **Uniqueness**: primary keys are unique
+- **Not null**: critical fields are never null
+- **Accepted values**: order statuses are valid
+- **Relationships**: foreign keys exist in parent tables
+- **Custom test**: revenue is always positive
 
----
-
-## 🛠 Tech Stack
+## Tech Stack
 
 | Tool | Purpose |
 |---|---|
@@ -135,9 +123,7 @@ dbt tests are defined in each `schema.yml` file:
 | dbt Core + dbt-databricks | Data transformation |
 | Databricks SQL | Dashboarding |
 
----
-
-## 💡 Key Learning Outcomes
+## Key Learning Outcomes
 
 - Loading and managing Delta tables in Databricks
 - Building a layered dbt project (staging → intermediate → marts)
