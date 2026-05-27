@@ -123,10 +123,4 @@ dbt tests are defined in each `schema.yml` file:
 | dbt Core + dbt-databricks | Data transformation |
 | Databricks SQL | Dashboarding |
 
-## Key Learning Outcomes
 
-- Loading and managing Delta tables in Databricks
-- Building a layered dbt project (staging → intermediate → marts)
-- Writing dbt schema tests for data quality
-- Creating reusable dbt macros
-- Building business dashboards in Databricks SQL
